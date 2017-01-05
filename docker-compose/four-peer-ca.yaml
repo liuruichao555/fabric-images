@@ -2,16 +2,16 @@ version: '2'
 services:
   baseimage:
     build: ./baseimage
-    image: hyperledger/fabric-baseimage:latest
+    image: oxchains/peer-baseimage
 
   membersrvc:
-    image: ibmblockchain/fabric-membersrvc:${ARCH_TAG}
+    image: oxchains/blockchain-membersrvc
     extends:
       file: base/membersrvc.yaml
       service: membersrvc
 
   vp0:
-    image: ibmblockchain/fabric-peer:${ARCH_TAG}
+    image: oxchains/blockchain-peer
     extends:
       file: base/peer-secure-pbft-base.yaml
       service: peer-secure-pbft-base
@@ -21,13 +21,13 @@ services:
       - "7053:7053"
     environment:
       - CORE_PEER_ID=vp0
-      - CORE_SECURITY_ENROLLID=test_vp0
-      - CORE_SECURITY_ENROLLSECRET=MwYpmSRjupbT
+      - CORE_SECURITY_ENROLLID=lrc_vp1
+      - CORE_SECURITY_ENROLLSECRET=liuruichao123
     links:
       - membersrvc
 
   vp1:
-    image: ibmblockchain/fabric-peer:${ARCH_TAG}
+    image: oxchains/blockchain-peer
     extends:
       file: base/peer-secure-pbft-base.yaml
       service: peer-secure-pbft-base
@@ -38,14 +38,14 @@ services:
     environment:
       - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
       - CORE_PEER_ID=vp1
-      - CORE_SECURITY_ENROLLID=test_vp1
-      - CORE_SECURITY_ENROLLSECRET=5wgHK9qqYaPy
+      - CORE_SECURITY_ENROLLID=lrc_vp2
+      - CORE_SECURITY_ENROLLSECRET=liuruichao123
     links:
       - membersrvc
       - vp0
 
   vp2:
-    image: ibmblockchain/fabric-peer:${ARCH_TAG}
+    image: oxchains/blockchain-peer
     extends:
       file: base/peer-secure-pbft-base.yaml
       service: peer-secure-pbft-base
@@ -56,27 +56,27 @@ services:
     environment:
       - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
       - CORE_PEER_ID=vp2
-      - CORE_SECURITY_ENROLLID=test_vp2
-      - CORE_SECURITY_ENROLLSECRET=vQelbRvja7cJ
+      - CORE_SECURITY_ENROLLID=lrc_vp3
+      - CORE_SECURITY_ENROLLSECRET=liuruichao123
     links:
       - membersrvc
       - vp0
 
-  vp3:
-    image: ibmblockchain/fabric-peer:${ARCH_TAG}
+  nvp0:
+    image: oxchains/blockchain-peer
     extends:
       file: base/peer-secure-pbft-base.yaml
       service: peer-secure-pbft-base
     ports:
-      - "10050:7050"
-      - "10051:7051"
-      - "10053:7053"
+      - "11050:7050"
+      - "11051:7051"
+      - "11053:7053"
     environment:
+      - CORE_PEER_VALIDATOR_ENABLED=false
       - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
-      - CORE_PEER_ID=vp3
-      - CORE_SECURITY_ENROLLID=test_vp3
-      - CORE_SECURITY_ENROLLSECRET=9LKqKH5peurL
+      - CORE_PEER_ID=nvp0
+      - CORE_SECURITY_ENROLLID=test_nvp0
+      - CORE_SECURITY_ENROLLSECRET=iywrPBDEPl0K
     links:
       - membersrvc
       - vp0
-
