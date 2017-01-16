@@ -3,6 +3,7 @@ services:
   peer-secure-pbft-base:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /Users/liuruichao/develop/opensource/golang/gopath/src/customDeployChaincode:/opt/gopath/src/customDeployChaincode
     environment:
       - CORE_PEER_DISCOVERY_PERIOD=60s
       - CORE_PEER_DISCOVERY_TOUCHPERIOD=61s
