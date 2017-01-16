@@ -2,7 +2,7 @@ version: '2'
 services:
   baseimage:
     build: ./baseimage
-    image: liuruichao/fabric-baseimage
+    image: hyperledger/fabric-baseimage
 
   membersrvc:
     image: liuruichao/fabric-cop
