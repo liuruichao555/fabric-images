@@ -1,0 +1,2 @@
+#FROM ibmblockchain/fabric-peer:_ARCH_TAG_
+FROM liuruichao/fabric-peer

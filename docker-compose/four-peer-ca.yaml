@@ -1,8 +1,8 @@
 version: '2'
 services:
-#baseimage:
-#build: ./baseimage
-#image: liuruichao/peer-baseimage
+  baseimage:
+    build: ./baseimage
+    image: liuruichao/fabric-baseimage
 
   membersrvc:
     image: liuruichao/fabric-cop
@@ -21,8 +21,8 @@ services:
       - "7053:7053"
     environment:
       - CORE_PEER_ID=vp0
-      - CORE_SECURITY_ENROLLID=lrc_vp1
-      - CORE_SECURITY_ENROLLSECRET=liuruichao123
+      - CORE_SECURITY_ENROLLID=test_vp0
+      - CORE_SECURITY_ENROLLSECRET=MwYpmSRjupbT
     links:
       - membersrvc
 
@@ -38,8 +38,8 @@ services:
     environment:
       - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
       - CORE_PEER_ID=vp1
-      - CORE_SECURITY_ENROLLID=lrc_vp2
-      - CORE_SECURITY_ENROLLSECRET=liuruichao123
+      - CORE_SECURITY_ENROLLID=test_vp1
+      - CORE_SECURITY_ENROLLSECRET=5wgHK9qqYaPy
     links:
       - membersrvc
       - vp0
@@ -56,8 +56,8 @@ services:
     environment:
       - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
       - CORE_PEER_ID=vp2
-      - CORE_SECURITY_ENROLLID=lrc_vp3
-      - CORE_SECURITY_ENROLLSECRET=liuruichao123
+      - CORE_SECURITY_ENROLLID=test_vp2
+      - CORE_SECURITY_ENROLLSECRET=vQelbRvja7cJ
     links:
       - membersrvc
       - vp0
